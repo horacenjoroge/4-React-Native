@@ -1,16 +1,16 @@
-import { useState } from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import { Card } from 'react-native-elements';
-import { CAMPSITES } from '../shared/campsites';
-import { PROMOTIONS } from '../shared/promotions';
-import { PARTNERS } from '../shared/partners';
+import { useSelector } from 'react-redux';
+import { baseUrl } from '../shared/baseUrl';
 
-const FeaturedItem = ({item}) => {
+// FeaturedItem component handles displaying individual featured items
+const FeaturedItem = ({ item }) => {
    if (item) {
        return (
-           <Card containerStyle={{padding: 0}}>
-               <Card.Image source={item.image}>
-                   <View style={{justifyContent: 'center', flex: 1}}>
+           <Card containerStyle={{ padding: 0 }}>
+               {/* Using baseUrl to construct complete image URL */}
+               <Card.Image source={{ uri: baseUrl + item.image }}>
+                   <View style={{ justifyContent: 'center', flex: 1 }}>
                        <Text 
                            style={{
                                color: 'white', 
@@ -30,13 +30,17 @@ const FeaturedItem = ({item}) => {
 };
 
 const HomeScreen = () => {
-   const [campsites, setCampsites] = useState(CAMPSITES);
-   const [promotions, setPromotions] = useState(PROMOTIONS);
-   const [partners, setPartners] = useState(PARTNERS);
+   // Using useSelector to access data from Redux store
+   const campsites = useSelector((state) => state.campsites);
+   const promotions = useSelector((state) => state.promotions);
+   const partners = useSelector((state) => state.partners);
 
-   const featCampsite = campsites.find((item) => item.featured);
-   const featPromotion = promotions.find((item) => item.featured);
-   const featPartner = partners.find((item) => item.featured);
+   // Finding featured items from each category
+   const featCampsite = campsites.campsitesArray.find((item) => item.featured);
+   const featPromotion = promotions.promotionsArray.find(
+       (item) => item.featured
+   );
+   const featPartner = partners.partnersArray.find((item) => item.featured);
 
    return (
        <ScrollView>

@@ -3,6 +3,12 @@ import Constants from 'expo-constants';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
 import { Icon } from 'react-native-elements';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchPartners } from '../features/patners/partnersSlice';
+import { fetchCampsites } from '../features/campsites/campsitesSlice';
+import { fetchPromotions } from '../features/promotions/promotionsSlice';
+import { fetchComments } from '../features/comments/commentsSlice';
 import logo from '../asset/images/logo.png';
 import HomeScreen from './HomeScreen';
 import DirectoryScreen from './DirectoryScreen';
@@ -127,6 +133,15 @@ const DirectoryNavigator = () => {
 };
 
 const Main = () => {
+   const dispatch = useDispatch();
+
+   useEffect(() => {
+       dispatch(fetchCampsites());
+       dispatch(fetchPromotions());
+       dispatch(fetchPartners());
+       dispatch(fetchComments());
+   }, [dispatch]);
+
    return (
        <View style={{
            flex: 1,
