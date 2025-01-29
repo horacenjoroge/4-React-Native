@@ -4,10 +4,10 @@
     "slug": "nucampsite",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./asset/images/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./asset/images/icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -15,20 +15,26 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.finch2000.nucampsite"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./asset/images/icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.finch2000.nucampsite"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./asset/images/icon.png"
     },
-    "sdkVersion": "52.0.0",
     "plugins": [
       "expo-secure-store"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "fc067b7e-9324-4d6e-af7f-e26943b9a09a"
+      }
+    }
   }
 }

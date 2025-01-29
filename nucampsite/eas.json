@@ -1,0 +1,26 @@
+{
+  "build": {
+    "preview": {
+      "android": {
+        "buildType": "apk",
+        "gradleCommand": "clean assembleDebug --warning-mode all --stacktrace"
+      }
+    },
+    "preview2": {
+      "android": {
+        "gradleCommand": "clean :app:assembleRelease --stacktrace"
+      }
+    },
+    "preview3": {
+      "developmentClient": true,
+      "android": {
+        "gradleCommand": "clean assembleDebug --stacktrace"
+      }
+    },
+    "production": {
+      "android": {
+        "gradleCommand": "clean :app:bundleRelease --stacktrace"
+      }
+    }
+  }
+}
